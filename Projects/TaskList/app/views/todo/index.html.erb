@@ -12,14 +12,14 @@
 <%end%>
 
 <div id="addtodo_container">
-<%= form_for :todos do |form|%>
+<%= form_with url: 'todo/create' do |form|%>
 <h1>Новая задача</h1>
 <h4>Описание задачи<h4>
 <p>
 <%= form.text_field :text %> 
 </p>
 <p>
-<%= form.select :project, @projects.collect{|p|[p.title,p.id]} %>
+<%= form.select :project_id, @projects.collect{|p|[p.title,p.id]}, include_blank: false%>
 </p>
 <p>
     <a href="#" id="cancel_todo">Отмена</a>
