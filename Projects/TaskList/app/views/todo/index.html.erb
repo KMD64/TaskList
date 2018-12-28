@@ -1,0 +1,29 @@
+<a href="#" id="add_todo">
+<%= image_tag "addTodoIcon.png"%>
+</a>
+<h1>Задачи</h1>
+<% for @prj in @projects do %>
+    <h2><%=@prj.title%></h2>
+    <ul>
+    <% for @todo in @prj.todos do %>
+        <li><%=@todo.text%></li>
+    <%end%>
+    </ul>
+<%end%>
+
+<div id="addtodo_container">
+<%= form_for :todos do |form|%>
+<h1>Новая задача</h1>
+<h4>Описание задачи<h4>
+<p>
+<%= form.text_field :text %> 
+</p>
+<p>
+<%= form.select :project, @projects.collect{|p|[p.title,p.id]} %>
+</p>
+<p>
+    <a href="#" id="cancel_todo">Отмена</a>
+    <a href="#" id="submit_todo">Ок</a>
+</p>
+<%end%>
+</div>
