@@ -37,6 +37,7 @@ $(document).ready(function(){
     $(document).on('click','.project span',function(){
        $(this).parents('form:first').submit(); 
     });
-    $('#addtodo_container select').select2({minimumResultsForSearch: -1, dropdownCssClass : 'no-search'});
+    
+    $('#project_id').select2({'minResultsForSearch':'-1'});
     
 });

@@ -124,18 +124,17 @@ body{
     padding-bottom:1em;
     form{
         
-        .select2-search.no-search{display:none;}
+        .select2-search .no-search{display:none;}
+        select{display:none;}
         h4{
             text-align:center;
             padding-bottom:2em;
-            
             border-bottom:$border;
             
         }
         input{
             width:100%;
         }
-         select{width:100%;}
         a{
             display:inline-block;
             width:140px;
@@ -156,19 +155,17 @@ body{
             background-color:$main-color;
             color:$light-text-color;
         }
-        a:hover{
-            
-            
-        }
         
     }
 }
+@import 'select2.css';
+    .select2{
+        display:block;
+        width:100%;
+    }
     .select2-selection, .select2-selection__rendered, .select2-selection__arrow {
-
        height: 40px !important;
-
        span {
-
            line-height: 40px !important;
 
            text-align: left;
@@ -178,7 +175,6 @@ body{
     }
 
     .select2-selection {
-
        border-radius: 0 !important;
 
     }
