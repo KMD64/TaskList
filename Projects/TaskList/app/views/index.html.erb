@@ -1,0 +1,42 @@
+<div class='.container' >
+    <div class='row' id='header'>
+        <div class='col-lg-11'>
+            <h1>Задачи</h1>
+        </div>
+        <div class='col-lg-1' id="add_todo">
+            <%= image_tag "addTodoIcon.png"%>
+        </div>
+    </div>
+    <div class='row' id='projects'>
+        <% for @prj in @projects do %>
+        <div class='col'>
+            <div class='project'>
+                <h3><%=@prj.title%></h3>
+                <ul>
+                    <% for @todo in @prj.todos do %>
+                    <li><input type=checkbox /><%=@todo.text%></li>
+                    <%end%>
+                </ul>
+            </div>
+        </div>
+        <%end%>
+    </div>
+</div>
+</div>
+<div id="addtodo_container">
+    <%= form_with url: 'todo/create' do |form|%>
+    <h1>Новая задача</h1>
+    <h4>Описание задачи<h4>
+    <p>
+        <%= form.text_field :text %> 
+    </p>
+    <p>
+    <%= form.select :project_id, @projects.collect{|p|[p.title,p.id]}, include_blank: false%>
+    </p>
+    <p>
+        <a href="#" id="cancel_todo">Отмена</a>
+        <a href="#" id="submit_todo">Ок</a>
+    </p>
+    <%end%>
+</div>
+

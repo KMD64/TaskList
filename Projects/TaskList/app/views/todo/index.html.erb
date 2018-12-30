@@ -1,29 +1,43 @@
-<a href="#" id="add_todo">
-<%= image_tag "addTodoIcon.png"%>
-</a>
-<h1>Задачи</h1>
-<% for @prj in @projects do %>
-    <h2><%=@prj.title%></h2>
-    <ul>
-    <% for @todo in @prj.todos do %>
-        <li><%=@todo.text%></li>
-    <%end%>
-    </ul>
-<%end%>
 
-<div id="addtodo_container">
-<%= form_with url: 'todo/create' do |form|%>
-<h1>Новая задача</h1>
-<h4>Описание задачи<h4>
-<p>
-<%= form.text_field :text %> 
-</p>
-<p>
-<%= form.select :project_id, @projects.collect{|p|[p.title,p.id]}, include_blank: false%>
-</p>
-<p>
-    <a href="#" id="cancel_todo">Отмена</a>
-    <a href="#" id="submit_todo">Ок</a>
-</p>
-<%end%>
+    <div id='header'>
+        <div id='header_label'>
+            <h1>Задачи</h1>
+        </div>
+        <a href="#" id="add_todo">
+            <%= image_tag "addTodoIcon.png"%>
+        </a>
+    </div>
+    <div class='row' id='projects'>
+        <% for @prj in @projects do %>
+            <div class='project'>
+                <h3><%=@prj.title%></h3>
+                <ul>
+                    <% for @todo in @prj.todos do %>
+                    <li><%=form_with url:'todo/update',method:'post' do |form|%>
+                        <input type=hidden id="todo_id" name="todo_id" value=<%= @todo.id%> >
+                            <input type=checkbox class='icheckbox_square-blue'  <%= if @todo.isCompleted then 'checked' end%> />
+                            <span <%= if @todo.isCompleted then "style=text-decoration:line-through" end%> > <%=@todo.text%></span>
+                        <%end%>
+                    </li>
+                    <%end%>
+                </ul>
+        </div>
+        <%end%>
+    </div>
 </div>
+</div>
+<div id="addtodo_container">
+    <%= form_with url: 'todo/create' do |form|%>
+    <h4>Новая задача</h4>
+    <p>
+        <%= form.text_field :text, placeholder:"Описание задачи"%>
+    </p>
+    <p>
+    <%= form.select :project_id, @projects.collect{|p|[p.title,p.id]}, include_blank: false, placeholder:"Категория"%>
+    </p>
+    <p>
+        <a href="#" id="cancel_todo">Отмена</a>
+        <a href="#" id="submit_todo">Ок</a>
+    </p>
+    <%end%>
+

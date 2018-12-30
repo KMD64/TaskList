@@ -12,16 +12,31 @@
 //
 //= require jquery3
 //= require rails-ujs
+//= require icheck/icheck.js
+//= require select2.js
 //= require activestorage
-//= require_tree .
+//= require_tree
+
 $(document).ready(function(){
     $(document).on("click","#add_todo",function(){
-        $('#addtodo_container').show();
+        $('#addtodo_container').css('display','inline-block');
     });
     $(document).on("click","#submit_todo",function(){
         $('#addtodo_container > form').submit();
     });
     $(document).on("click","#cancel_todo",function(){
-        $('#addtodo_container').hide();
+        $('#addtodo_container').css('display','none');
+        console.log("hidden");
     });    
+    
+    $('input').iCheck({handle:'checkbox',inheritClass:true});
+    
+    $(document).on('ifClicked','.icheckbox',function(){
+        $(this).parents('form:first').submit();
+    });
+    $(document).on('click','.project span',function(){
+       $(this).parents('form:first').submit(); 
+    });
+    $('#addtodo_container select').select2({minimumResultsForSearch: -1, dropdownCssClass : 'no-search'});
+    
 });
