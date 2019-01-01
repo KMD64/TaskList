@@ -1,9 +1,7 @@
 class TodoController < ApplicationController
   def index
       @projects = Project.all
-      for @prj in @projects do
-         @prj.todos = Todo.where project_id: @prj.id 
-      end
+      
       respond_to do |format|
         format.html
         format.json {render json: @projects}
