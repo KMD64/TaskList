@@ -4,7 +4,11 @@ class TodoController < ApplicationController
       for @prj in @projects do
          @prj.todos = Todo.where project_id: @prj.id 
       end
-      @projects = @projects.to_json
+      respond_to do |format|
+        format.html
+        format.json {render json: @projects}
+        format.xml {render xml: @projects}
+      end
   end
   def update
       todo = Todo.find(params['todo_id'])
