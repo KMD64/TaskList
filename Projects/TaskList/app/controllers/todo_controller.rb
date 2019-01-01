@@ -1,6 +1,6 @@
 class TodoController < ApplicationController
   def index
-      @projects = Project.all
+      @projects = Project.all.to_json
     
   end
   def update

@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class='row' id='projects'>
-        <% for @prj in @projects do %>
+        <% for @prj in Project.all do %>
             <div class='project'>
                 <h3><%=@prj.title%></h3>
                 <ul>
@@ -33,7 +33,7 @@
         <%= form.text_field :text, placeholder:"Описание задачи"%>
     </p>
     <p>
-    <%= form.select :project_id, @projects.collect{|p|[p.title,p.id]}, include_blank: false, placeholder:"Категория"%>
+    <%= form.select :project_id, Project.all.collect{|p|[p.title,p.id]}, include_blank: false, placeholder:"Категория"%>
     </p>
     <p>
         <a href="#" id="cancel_todo">Отмена</a>
