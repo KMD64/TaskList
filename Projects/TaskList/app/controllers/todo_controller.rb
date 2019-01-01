@@ -1,11 +1,14 @@
 class TodoController < ApplicationController
   def index
       @projects = Project.all
-      
+      @type = params['type']
+      if type == 'html'
       respond_to do |format|
+        format.json{render json: @projects}
+      else
+        respond_to do |format|
         format.html
-        format.json {render json: @projects}
-        format.xml {render xml: @projects}
+      end
       end
   end
   def update
