@@ -13,7 +13,7 @@
                 <h3><%=@prj.title%></h3>
                 <ul>
                     <% for @todo in @prj.todos do %>
-                    <li><%=form_with url:'todo/update',method:'post' do |form|%>
+                    <li><%=form_with url:'update',method:'post' do |form|%>
                         <input type=hidden id="todo_id" name="todo_id" value=<%= @todo.id%> >
                             <input type=checkbox class='icheckbox_square-blue'  <%= if @todo.isCompleted then 'checked' end%> />
                             <span <%= if @todo.isCompleted then "style=text-decoration:line-through" end%> > <%=@todo.text%></span>
@@ -27,7 +27,7 @@
 </div>
 </div>
 <div id="addtodo_container">
-    <%= form_with url: 'todo/create' do |form|%>
+    <%= form_with url: 'create' do |form|%>
     <h4>Новая задача</h4>
     <p>
         <%= form.text_field :text, placeholder:"Описание задачи"%>
