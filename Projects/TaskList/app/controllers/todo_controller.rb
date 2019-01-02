@@ -24,6 +24,9 @@ class TodoController < ApplicationController
     project = Project.find(params['project_id'])
     todo = Todo.create text: params['text'], isCompleted: false
     project.todos << todo
+    respond_to do |format|
+        format.json{render json: todo}
+    end
     redirect_to '/'
   end
 end
