@@ -26,7 +26,8 @@ class TodoController < ApplicationController
     project.todos << todo
     respond_to do |format|
         format.json{render json: todo}
+        format.html{redirect_to '/'}
     end
-    redirect_to '/'
+    
   end
 end
